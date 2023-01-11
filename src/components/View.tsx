@@ -1,5 +1,7 @@
-import { Paper } from "@mui/material";
 import { FC, Fragment, ReactNode } from "react";
+
+import { Paper } from "@mui/material";
+
 import { Header } from "./Header";
 
 interface Props {

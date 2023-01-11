@@ -1,7 +1,8 @@
-import { Divider, Paper, Typography } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { FC, useState } from "react";
 import { Company } from "src/types";
+
+import { Divider, Paper, Typography } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 
 interface Props {
   company: Company;
@@ -14,7 +15,7 @@ export const RankingEntry: FC<Props> = ({ company }) => {
       elevation={elevation}
       onMouseOver={() => setElevation(3)}
       onMouseOut={() => setElevation(1)}
-      sx={{cursor: 'pointer'}}
+      sx={{ cursor: "pointer" }}
     >
       <Grid container spacing={2}>
         <Grid xs={1} display="flex" justifyContent="center" alignItems="center">

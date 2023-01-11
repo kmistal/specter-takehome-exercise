@@ -1,1 +1,0 @@
-export { HeadlessTable } from "./HeadlessTable";

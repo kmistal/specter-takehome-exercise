@@ -1,25 +1,32 @@
-import { TableCell, TableRow } from "@mui/material";
 import { FC, Fragment } from "react";
 import { HeadlessTable } from "src/components";
-import { Company } from "src/types";
+import { CompanyResponse } from "src/types/CompanyResponse";
+
+import { TableCell, TableRow } from "@mui/material";
+import { InfiniteData } from "@tanstack/react-query";
+
 import { RankingEntry } from "./RankingEntry";
 
 interface Props {
-  companies: Company[];
+  companyInfiniteResponse: InfiniteData<CompanyResponse>;
 }
 
-export const RankingList: FC<Props> = ({ companies }) => {
-  const rows = companies.map((company) => (
-    <TableRow key={company.Domain}>
-      <TableCell component="th" scope="row" sx={{ borderBottom: "none" }}>
-        <RankingEntry company={company} />
-      </TableCell>
-    </TableRow>
-  ));
+export const RankingList: FC<Props> = ({ companyInfiniteResponse }) => {
+  const rows = companyInfiniteResponse.pages.map((companyResponse) =>
+    companyResponse.data.map((company) => (
+      <TableRow key={company.Domain}>
+        <TableCell component="th" scope="row" sx={{ borderBottom: "none" }}>
+          <RankingEntry company={company} />
+        </TableCell>
+      </TableRow>
+    ))
+  );
 
   return (
-    <HeadlessTable>
-      <Fragment>{rows}</Fragment>
-    </HeadlessTable>
+    <Fragment>
+      <HeadlessTable>
+        <Fragment>{rows}</Fragment>
+      </HeadlessTable>
+    </Fragment>
   );
 };

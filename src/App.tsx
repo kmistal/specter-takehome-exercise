@@ -1,4 +1,5 @@
 import { Container, useMediaQuery, useTheme } from "@mui/material";
+
 import { RankingView } from "./modules/RankingModule/views/RankingView";
 
 function App() {
