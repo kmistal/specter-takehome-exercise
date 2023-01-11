@@ -1,11 +1,7 @@
-import { View } from "./components";
+import { RankingView } from "./modules/RankingModule/views/RankingView";
 
 function App() {
-  return (
-    <View title="Ranking">
-      <p>placeholder</p>
-    </View>
-  );
+  return <RankingView />;
 }
 
 export default App;
