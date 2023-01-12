@@ -1,8 +1,13 @@
 import { FC, useState } from "react";
 import { Company } from "src/types";
 
+import {
+    ApartmentOutlined, HailOutlined, HandshakeOutlined, LocationOnOutlined
+} from "@mui/icons-material";
 import { Divider, Paper, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
+
+import { RankingEntryDetail } from "./RankingEntryDetail";
 
 interface Props {
   company: Company;
@@ -26,10 +31,10 @@ export const RankingEntry: FC<Props> = ({ company }) => {
         <Divider orientation="vertical" flexItem />
         <Grid xs={10}>
           <Typography variant="body1">{company["Company Name"]}</Typography>
-          <Typography variant="body2">{company["HQ Region"]}</Typography>
-          <Typography variant="body2">{company["Industry"]}</Typography>
-          <Typography variant="body2">{company["Employee Count"]}</Typography>
-          <Typography variant="body2">{company["Founders"]}</Typography>
+          <RankingEntryDetail detail={company["HQ Region"]} Icon={LocationOnOutlined} />
+          <RankingEntryDetail detail={company["Industry"]} Icon={ApartmentOutlined} />
+          <RankingEntryDetail detail={company["Employee Count"]} Icon={HailOutlined} />
+          <RankingEntryDetail detail={company["Founders"]} Icon={HandshakeOutlined} />
         </Grid>
       </Grid>
     </Paper>
