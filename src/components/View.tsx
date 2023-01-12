@@ -7,7 +7,7 @@ import { Header } from "./Header";
 interface Props {
   title: string;
   actions?: ReactNode;
-  children?: JSX.Element;
+  children?: ReactNode;
 }
 
 export const View: FC<Props> = ({ title, actions, children }) => {

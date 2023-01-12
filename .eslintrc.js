@@ -27,7 +27,7 @@ module.exports = {
   rules: {
     // Enabled
     "functional/immutable-data": [
-      "error",
+      "off",
       {
         assumeTypes: true,
         ignoreImmediateMutation: true,
