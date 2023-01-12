@@ -16,7 +16,9 @@ export const CompanyQuickStats: FC<Props> = ({ company }) => {
       justifyContent="space-between"
       alignItems="center"
       paddingY={2}
+      paddingX={0}
       spacing={2}
+
     >
       <Grid width={200}>
         <Card title="Rank">{company["Rank"]}</Card>

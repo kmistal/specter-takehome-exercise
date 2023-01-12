@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { View } from "src/components";
 import { Company } from "src/types";
 
@@ -8,8 +7,11 @@ import { CompanyMetaData } from "../components/CompanyMetaData";
 import { CompanyQuickStats } from "../components/CompanyQuickStats";
 import { CompanyStatsChart } from "../components/CompanyStatsChart";
 
-export const CompanyDetailsView: FC = () => {
-  const company = useLocation().state as Company;
+interface Props {
+  company: Company;
+}
+
+export const CompanyDetailsView: FC<Props> = ({company}) => {
   const [isMetaDataVisible, setIsMetaDataVisible] = useState(false);
 
   return (

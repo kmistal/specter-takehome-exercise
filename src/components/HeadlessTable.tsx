@@ -12,7 +12,7 @@ export const HeadlessTable: FC<Props> = ({ children }) => {
   return (
     <Fragment>
       <TableContainer>
-        <MuiTable sx={{ minWidth: 650 }} aria-label="">
+        <MuiTable aria-label="">
           <TableBody>{children}</TableBody>
         </MuiTable>
       </TableContainer>

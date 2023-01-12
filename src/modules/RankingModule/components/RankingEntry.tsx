@@ -25,7 +25,7 @@ export const RankingEntry: FC<Props> = ({ company }) => {
       onMouseOut={() => setElevation(1)}
       sx={{ cursor: "pointer" }}
       onClick={() => {
-        navigate(RoutePaths.COMPANY_DETAILS, { state: company });
+        navigate(`/${RoutePaths.COMPANY_DETAILS}/${company.Domain}`, { state: company });
       }}
     >
       <Grid container spacing={2}>

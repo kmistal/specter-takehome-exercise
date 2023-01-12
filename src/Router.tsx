@@ -4,7 +4,6 @@ import { Typography } from "@mui/material";
 
 import App from "./App";
 import { RoutePaths } from "./constants/RoutePaths";
-import { CompanyDetailsView } from "./modules/CompanyModule/views/CompanyDetailsView";
 import { RankingView } from "./modules/RankingModule/views/RankingView";
 
 export default function Router() {
@@ -12,7 +11,7 @@ export default function Router() {
     <Routes>
       <Route path={RoutePaths.ROOT} element={<App />}>
         <Route index element={<RankingView />} />
-        <Route path={RoutePaths.COMPANY_DETAILS} element={<CompanyDetailsView />} />
+        <Route path={`${RoutePaths.COMPANY_DETAILS}/:domain`} element={<RankingView />} />
         <Route path="*" element={<Typography variant="h1" textAlign="center">404</Typography>} />
       </Route>
     </Routes>

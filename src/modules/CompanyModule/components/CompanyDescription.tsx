@@ -7,7 +7,7 @@ interface Props {
   companyName: string;
   description: string;
   isMetaDataVisible: boolean;
-  setIsMetaDataVisible: (isVisible: boolean) => void;
+  setIsMetaDataVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const CompanyDescription: FC<Props> = ({

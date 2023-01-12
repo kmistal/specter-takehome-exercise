@@ -1,4 +1,4 @@
-import { FC, Fragment, ReactNode } from "react";
+import { FC, ReactNode } from "react";
 
 import { Paper } from "@mui/material";
 
@@ -12,12 +12,12 @@ interface Props {
 
 export const View: FC<Props> = ({ title, actions, children }) => {
   return (
-    <Fragment>
+    <div>
       <Header title={title} />
       {actions}
-      <Paper elevation={0} sx={{ paddingY: 1, paddingX: 2, background: 'transparent'}}>
+      <Paper elevation={0} sx={{ paddingY: 1, background: 'transparent'}}>
         {children}
       </Paper>
-    </Fragment>
+    </div>
   );
 };
