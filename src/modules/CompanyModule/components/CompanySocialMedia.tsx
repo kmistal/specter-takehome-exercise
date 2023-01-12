@@ -11,7 +11,7 @@ interface Props {
 
 export const CompanySocialMedia: FC<Props> = ({ company }) => {
   return (
-    <Grid container display="flex" justifyContent="flex-start" alignItems="baseline">
+    <Grid container display="flex" justifyContent="flex-start" alignItems="unset">
       <Typography variant="body2" style={{ fontWeight: 800 }}>
         Socials:
       </Typography>

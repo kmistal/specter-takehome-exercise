@@ -1,6 +1,6 @@
-import { Container, useMediaQuery, useTheme } from "@mui/material";
+import { Outlet } from "react-router-dom";
 
-import { CompanyDetailsView } from "./modules/CompanyModule/views/CompanyDetailsView";
+import { Container, useMediaQuery, useTheme } from "@mui/material";
 
 function App() {
   const theme = useTheme();
@@ -8,8 +8,7 @@ function App() {
 
   return (
     <Container maxWidth={isXlScreen ? "xl" : "lg"} sx={{ paddingY: 2 }}>
-      {/* <RankingView /> */}
-      <CompanyDetailsView />
+      <Outlet />
     </Container>
   );
 }

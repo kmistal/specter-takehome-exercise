@@ -1,5 +1,7 @@
 import { FC, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { TextInfoEntry } from "src/components";
+import { RoutePaths } from "src/constants/RoutePaths";
 import { Company } from "src/types";
 
 import {
@@ -14,12 +16,17 @@ interface Props {
 
 export const RankingEntry: FC<Props> = ({ company }) => {
   const [elevation, setElevation] = useState(1);
+  const navigate = useNavigate();
+
   return (
     <Paper
       elevation={elevation}
       onMouseOver={() => setElevation(3)}
       onMouseOut={() => setElevation(1)}
       sx={{ cursor: "pointer" }}
+      onClick={() => {
+        navigate(RoutePaths.COMPANY_DETAILS, { state: company });
+      }}
     >
       <Grid container spacing={2}>
         <Grid xs={1} display="flex" justifyContent="center" alignItems="center">

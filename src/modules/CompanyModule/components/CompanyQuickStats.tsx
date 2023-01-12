@@ -10,7 +10,17 @@ interface Props {
 
 export const CompanyQuickStats: FC<Props> = ({ company }) => {
   return (
-    <Grid container display="flex" justifyContent="center" alignItems="center" paddingY={2} spacing={2}>
+    <Grid
+      container
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+      paddingY={2}
+      spacing={2}
+    >
+      <Grid width={200}>
+        <Card title="Rank">{company["Rank"]}</Card>
+      </Grid>
       {company["Employee Count"] && (
         <Grid width={200}>
           <Card title="Employee Count">{company["Employee Count"]}</Card>
