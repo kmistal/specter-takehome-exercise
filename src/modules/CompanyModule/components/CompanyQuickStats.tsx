@@ -13,7 +13,7 @@ export const CompanyQuickStats: FC<Props> = ({ company }) => {
     <Grid
       container
       display="flex"
-      justifyContent="center"
+      justifyContent="space-between"
       alignItems="center"
       paddingY={2}
       spacing={2}

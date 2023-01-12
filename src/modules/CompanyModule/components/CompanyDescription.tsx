@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Card } from "src/components";
 
 import { Button, Typography } from "@mui/material";
 
@@ -16,14 +17,11 @@ export const CompanyDescription: FC<Props> = ({
   setIsMetaDataVisible,
 }) => {
   return (
-    <div>
-      <Typography variant="h5" component="h2" gutterBottom>
-        About {companyName}
-      </Typography>
+    <Card title={`About ${companyName}`} titlePrimary={true} textCentered={false}>
       <Typography variant="body1">{description}</Typography>
-      <Button onClick={() => setIsMetaDataVisible(!isMetaDataVisible)} sx={{margin: '-8px'}}>
+      <Button onClick={() => setIsMetaDataVisible(!isMetaDataVisible)} sx={{ margin: "-8px" }}>
         {!isMetaDataVisible ? "Show more info" : "Hide more info"}
       </Button>
-    </div>
+    </Card>
   );
 };

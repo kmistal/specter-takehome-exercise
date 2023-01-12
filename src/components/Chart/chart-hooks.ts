@@ -3,7 +3,15 @@ import { Theme } from "@mui/material";
 export function useChartOptions(theme: Theme, categories: string[]): ApexCharts.ApexOptions {
   const line = theme.palette.divider;
   return {
-    colors: [theme.palette.primary.main, theme.palette.primary.light],
+    colors: [
+      theme.palette.primary.main,
+      theme.palette.primary.light,
+      theme.palette.primary.dark,
+      theme.palette.secondary.main,
+      theme.palette.secondary.light,
+      theme.palette.secondary.dark,
+    ],
+
     chart: {
       height: 450,
       type: "area",
@@ -16,8 +24,14 @@ export function useChartOptions(theme: Theme, categories: string[]): ApexCharts.
     },
     stroke: {
       curve: "smooth",
-      width: 2,
+      width: 4,
+      
     },
+    
+      fill: {
+        opacity: 1,
+        type: 'gradient',
+      },
     grid: {
       strokeDashArray: 0,
       borderColor: line,

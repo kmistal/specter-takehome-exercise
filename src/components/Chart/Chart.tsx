@@ -14,5 +14,5 @@ export const Chart: FC<ChartProps> = ({ series, categories }) => {
   const theme = useTheme();
   const areaChartOptions = useChartOptions(theme, categories);
 
-  return <ReactApexChart options={areaChartOptions} series={series} />;
+  return <ReactApexChart options={areaChartOptions} series={series} type="area"/>;
 };

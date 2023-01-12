@@ -1,8 +1,6 @@
 import { FC } from "react";
-import { Chart } from "src/components";
+import { Card, Chart } from "src/components";
 import { Company } from "src/types";
-
-import { Box, Typography } from "@mui/material";
 
 import { CHART_CATEGORIES } from "../constants/ChartCategories";
 import { getDataSeries } from "../services/ChartService";
@@ -15,11 +13,8 @@ export const CompanyStatsChart: FC<Props> = ({ company }) => {
   const dataSeries = getDataSeries(company);
 
   return (
-    <Box paddingY={2}>
-      <Typography variant="h5" component="h2" gutterBottom>
-        Six months growth across different channels
-      </Typography>
+    <Card title="Six months growth across different channels" titlePrimary={true} textCentered={false}>
       <Chart categories={CHART_CATEGORIES} series={dataSeries} />
-    </Box>
+    </Card>
   );
 };

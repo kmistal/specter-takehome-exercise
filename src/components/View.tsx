@@ -15,7 +15,7 @@ export const View: FC<Props> = ({ title, actions, children }) => {
     <Fragment>
       <Header title={title} />
       {actions}
-      <Paper elevation={2} sx={{ paddingY: 1, paddingX: 2 }}>
+      <Paper elevation={0} sx={{ paddingY: 1, paddingX: 2, background: 'transparent'}}>
         {children}
       </Paper>
     </Fragment>

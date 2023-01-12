@@ -3,19 +3,60 @@ import { FC, ReactNode } from "react";
 import { Card as MuiCard, CardContent, Typography } from "@mui/material";
 
 interface Props {
-  title: string;
   children: ReactNode;
+  title?: string;
+  titlePrimary?: boolean;
+  textCentered?: boolean;
+  sx?: object;
 }
 
-export const Card: FC<Props> = ({title, children}) => {
+const Title: FC<{ textCentered: boolean; titlePrimary: boolean; title?: string }> = ({
+  textCentered,
+  titlePrimary,
+  title,
+}) => {
+  if (!title) {
+    return null;
+  }
+
+  if (!titlePrimary) {
+    return (
+      <Typography
+        textAlign={textCentered ? "center" : "left"}
+        fontSize="14px"
+        color="text.secondary"
+        gutterBottom
+      >
+        {title}
+      </Typography>
+    );
+  }
+
   return (
-    <MuiCard>
+    <Typography
+      textAlign={textCentered ? "center" : "left"}
+      variant="h5"
+      component="h2"
+      gutterBottom
+    >
+      {title}
+    </Typography>
+  );
+};
+
+export const Card: FC<Props> = ({
+  children,
+  title,
+  titlePrimary = false,
+  textCentered = true,
+  sx,
+}) => {
+  return (
+    <MuiCard sx={sx}>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          {title}
-        </Typography>
-        <Typography textAlign="center" variant="h5" component="div">
-            {children}
+        <Title title={title} titlePrimary={titlePrimary} textCentered={textCentered} />
+        <Typography textAlign={textCentered ? "center" : "left"} variant="h5" component="div">
+          {children}
         </Typography>
       </CardContent>
     </MuiCard>
