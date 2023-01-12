@@ -3,7 +3,7 @@ import ReactApexChart from "react-apexcharts";
 
 import { useTheme } from "@mui/material/styles";
 
-import { getChartOptions } from "./chart-utils";
+import { useChartOptions } from "./chart-hooks";
 
 export interface ChartProps {
   series: { name: string; data: number[] }[];
@@ -12,7 +12,7 @@ export interface ChartProps {
 
 export const Chart: FC<ChartProps> = ({ series, categories }) => {
   const theme = useTheme();
-  const areaChartOptions = getChartOptions(theme, categories);
+  const areaChartOptions = useChartOptions(theme, categories);
 
-  return <ReactApexChart options={areaChartOptions} series={series} type="bar" height={450} />;
+  return <ReactApexChart options={areaChartOptions} series={series} />;
 };

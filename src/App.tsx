@@ -1,6 +1,6 @@
 import { Container, useMediaQuery, useTheme } from "@mui/material";
 
-import { RankingView } from "./modules/RankingModule/views/RankingView";
+import { CompanyDetailsView } from "./modules/CompanyModule/views/CompanyDetailsView";
 
 function App() {
   const theme = useTheme();
@@ -8,7 +8,8 @@ function App() {
 
   return (
     <Container maxWidth={isXlScreen ? "xl" : "lg"} sx={{ paddingY: 2 }}>
-      <RankingView />
+      {/* <RankingView /> */}
+      <CompanyDetailsView />
     </Container>
   );
 }
