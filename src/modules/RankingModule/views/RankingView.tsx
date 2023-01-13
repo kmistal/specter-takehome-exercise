@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useCompanies } from "src/api/companies";
 import { LoadingSuspense, View } from "src/components";
@@ -11,33 +11,47 @@ import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { InfiniteData } from "@tanstack/react-query";
 
 import { RankingActions, RankingList } from "../components";
+import { DEFAULT_FILTERS } from "../constants/Filters";
 import { RANKING_PAGE_SIZE } from "../constants/Ranking";
+import { FiltersContext } from "../context/FiltersContext";
 
 export const RankingView: FC = () => {
-  const { isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, data } =
-    useCompanies(RANKING_PAGE_SIZE);
+  const [filters, setFilters] = useState(DEFAULT_FILTERS);
+  const { isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, refetch, data } = useCompanies(
+    RANKING_PAGE_SIZE,
+    filters
+  );
   const company = useLocation().state as Company;
+
+  useEffect(() => {
+    refetch();
+  }, [filters, refetch]);
+
   return (
-    <View title="Ranking" actions={<RankingActions />}>
-      <LoadingSuspense {...{ isLoading }}>
-        <Grid container spacing={3}>
-          <Grid xs>
-            <RankingList companyInfiniteResponse={data as InfiniteData<CompanyResponse>} />
-            {hasNextPage && (
-              <LoadingSuspense isLoading={isFetchingNextPage}>
-                <Grid container display="flex" justifyContent="center" alignItems="center">
-                  <Button onClick={() => fetchNextPage({ cancelRefetch: true })}>Load more</Button>
-                </Grid>
-              </LoadingSuspense>
+    <FiltersContext.Provider value={setFilters}>
+      <View title="Ranking" actions={<RankingActions />}>
+        <LoadingSuspense {...{ isLoading }}>
+          <Grid container spacing={3}>
+            <Grid xs>
+              <RankingList companyInfiniteResponse={data as InfiniteData<CompanyResponse>} />
+              {hasNextPage && (
+                <LoadingSuspense isLoading={isFetchingNextPage}>
+                  <Grid container display="flex" justifyContent="center" alignItems="center">
+                    <Button onClick={() => fetchNextPage({ cancelRefetch: true })}>
+                      Load more
+                    </Button>
+                  </Grid>
+                </LoadingSuspense>
+              )}
+            </Grid>
+            {company && (
+              <Grid xs={7}>
+                <CompanyDetailsView company={company} />
+              </Grid>
             )}
           </Grid>
-          {company && (
-            <Grid xs={7}>
-              <CompanyDetailsView company={company} />
-            </Grid>
-          )}
-        </Grid>
-      </LoadingSuspense>
-    </View>
+        </LoadingSuspense>
+      </View>
+    </FiltersContext.Provider>
   );
 };

@@ -1,3 +1,4 @@
+import { Filters } from "src/modules/RankingModule/types/Filters";
 import { Company } from "src/types";
 import { CompanyResponse } from "src/types/CompanyResponse";
 
@@ -5,13 +6,29 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 
 import data from "../api/companies.json";
 
-async function getPagedCompanies(pageSize: number, { pageParam = 0 }): Promise<CompanyResponse> {
+function getFilteredCompanies(companies: Company[], filters: Filters): Company[] {
+  let filteredCompanies = companies;
+  const { maxRank, minRank } = filters;
+  if (maxRank && minRank) {
+    filteredCompanies = companies.filter(
+      (company) => company.Rank >= Number(minRank) && company.Rank <= Number(maxRank)
+    );
+  }
+
+  return filteredCompanies;
+}
+
+async function getCompanies(
+  pageSize: number,
+  filters: Filters,
+  { pageParam = 0 }
+): Promise<CompanyResponse> {
   const pagedCompanies = await new Promise<CompanyResponse>((resolve) => {
+    const filteredCompanies = getFilteredCompanies(data as Company[], filters);
     const startIndex = pageParam * pageSize;
     const endIndex = startIndex + pageSize;
-    const companies = data as Company[];
-    const pagedCompanies = companies.slice(startIndex, endIndex);
-    const totalPages = Math.ceil(companies.length / pageSize);
+    const pagedCompanies = filteredCompanies.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(filteredCompanies.length / pageSize);
     const nextPageIndex = pageParam + 1 < totalPages ? pageParam + 1 : undefined;
 
     resolve({
@@ -23,13 +40,11 @@ async function getPagedCompanies(pageSize: number, { pageParam = 0 }): Promise<C
   return pagedCompanies;
 }
 
-export function useCompanies(pageSize: number) {
-  return useInfiniteQuery(["companyData"], (params) => getPagedCompanies(pageSize, params), {
+export function useCompanies(pageSize: number, filters: Filters) {
+  return useInfiniteQuery(["companyData"], (params) => getCompanies(pageSize, filters, params), {
     getNextPageParam: (lastPage) => lastPage.nextPageIndex,
     keepPreviousData: true,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
-    staleTime: 1000 * 20,
-    cacheTime: 1000 * 60 * 10,
   });
 }
