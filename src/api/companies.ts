@@ -13,49 +13,59 @@ function getCompaniesFilteredByMinMax(
   max: number,
   param: keyof Company
 ) {
-  return companies.filter(
-    (company) => company[param] >= min && company[param] <= max
-  );
+  if (!(max || min)) {
+    return companies;
+  }
+
+  return companies.filter((company) => company[param] >= min && company[param] <= max);
+}
+
+function getCompaniesFilteredByString(
+  companies: Company[],
+  filterQuery: string,
+  param: keyof Company,
+  emptyParamKey: string
+) {
+  if (filterQuery === "all") {
+    return companies;
+  }
+
+  return companies.filter((company) => {
+    if (filterQuery === emptyParamKey) {
+      return company[param].length === 0;
+    }
+    return company[param] === filterQuery;
+  });
 }
 
 function getFilteredCompanies(companies: Company[], filters: typeof DEFAULT_FILTERS): Company[] {
   let filteredCompanies = companies;
   const { maxRank, minRank, industry, maxEmployee, minEmployee, hqRegion } = filters;
-  if (maxRank || minRank) {
-    filteredCompanies = getCompaniesFilteredByMinMax(
-      filteredCompanies,
-      Number(minRank || 0),
-      Number(maxRank || Number.POSITIVE_INFINITY),
-      "Rank"
-    );
-  }
 
-  if (industry !== DEFAULT_FILTERS.industry) {
-    filteredCompanies = filteredCompanies.filter(({ Industry }) => {
-      if (industry === NO_INDUSTRY_KEY) {
-        return Industry === "";
-      }
-      return Industry === industry;
-    });
-  }
-
-  if (maxEmployee || minEmployee) {
-    filteredCompanies = getCompaniesFilteredByMinMax(
-      filteredCompanies,
-      Number(minEmployee || 0),
-      Number(maxEmployee || Number.POSITIVE_INFINITY),
-      "Employee Count"
-    );
-  }
-
-  if (hqRegion !== DEFAULT_FILTERS.hqRegion) {
-    filteredCompanies = filteredCompanies.filter((company) => {
-      if (hqRegion === NO_HQ_REGION_KEY) {
-        return company["HQ Region"] === "";
-      }
-      return company["HQ Region"] === hqRegion;
-    });
-  }
+  filteredCompanies = getCompaniesFilteredByMinMax(
+    filteredCompanies,
+    Number(minRank || 0),
+    Number(maxRank || Number.POSITIVE_INFINITY),
+    "Rank"
+  );
+  filteredCompanies = getCompaniesFilteredByString(
+    filteredCompanies,
+    industry,
+    "Industry",
+    NO_INDUSTRY_KEY
+  );
+  filteredCompanies = getCompaniesFilteredByMinMax(
+    filteredCompanies,
+    Number(minEmployee || 0),
+    Number(maxEmployee || Number.POSITIVE_INFINITY),
+    "Employee Count"
+  );
+  filteredCompanies = getCompaniesFilteredByString(
+    filteredCompanies,
+    hqRegion,
+    "HQ Region",
+    NO_HQ_REGION_KEY
+  );
 
   return filteredCompanies;
 }
