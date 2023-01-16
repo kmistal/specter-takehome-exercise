@@ -1,18 +1,28 @@
-import { useInfiniteQuery } from "@tanstack/react-query";
-
 import { DEFAULT_FILTERS } from "src/modules/RankingModule/constants/Filters";
 import { Company } from "src/types";
 import { CompanyResponse } from "src/types/CompanyResponse";
 
+import { useInfiniteQuery } from "@tanstack/react-query";
+
 import data from "../api/companies.json";
+import { NO_INDUSTRY_KEY } from "./constants";
 
 function getFilteredCompanies(companies: Company[], filters: typeof DEFAULT_FILTERS): Company[] {
   let filteredCompanies = companies;
-  const { maxRank, minRank } = filters;
+  const { maxRank, minRank, industry } = filters;
   if (maxRank && minRank) {
     filteredCompanies = companies.filter(
       (company) => company.Rank >= Number(minRank) && company.Rank <= Number(maxRank)
     );
+  }
+
+  if (industry !== DEFAULT_FILTERS.industry) {
+    filteredCompanies = filteredCompanies.filter(({ Industry }) => {
+      if (industry === NO_INDUSTRY_KEY) {
+        return Industry === "";
+      }
+      return Industry === industry;
+    });
   }
 
   return filteredCompanies;

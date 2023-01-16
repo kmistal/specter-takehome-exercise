@@ -1,0 +1,1 @@
+export const NO_INDUSTRY_KEY = 'No industry';
