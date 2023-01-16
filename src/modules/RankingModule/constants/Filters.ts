@@ -6,6 +6,7 @@ export const DEFAULT_FILTERS = {
   industry: "all",
   minEmployee: "",
   maxEmployee: "",
+  hqRegion: "all"
 };
 
 export const VALIDATION_SCHEMA = yup.object({

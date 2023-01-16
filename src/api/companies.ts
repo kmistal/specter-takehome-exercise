@@ -5,7 +5,7 @@ import { CompanyResponse } from "src/types/CompanyResponse";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 import data from "../api/companies.json";
-import { NO_INDUSTRY_KEY } from "./constants";
+import { NO_HQ_REGION_KEY, NO_INDUSTRY_KEY } from "./constants";
 
 function getCompaniesFilteredByMinMax(
   companies: Company[],
@@ -20,7 +20,7 @@ function getCompaniesFilteredByMinMax(
 
 function getFilteredCompanies(companies: Company[], filters: typeof DEFAULT_FILTERS): Company[] {
   let filteredCompanies = companies;
-  const { maxRank, minRank, industry, maxEmployee, minEmployee } = filters;
+  const { maxRank, minRank, industry, maxEmployee, minEmployee, hqRegion } = filters;
   if (maxRank || minRank) {
     filteredCompanies = getCompaniesFilteredByMinMax(
       filteredCompanies,
@@ -46,6 +46,15 @@ function getFilteredCompanies(companies: Company[], filters: typeof DEFAULT_FILT
       Number(maxEmployee || Number.POSITIVE_INFINITY),
       "Employee Count"
     );
+  }
+
+  if (hqRegion !== DEFAULT_FILTERS.hqRegion) {
+    filteredCompanies = filteredCompanies.filter((company) => {
+      if (hqRegion === NO_HQ_REGION_KEY) {
+        return company["HQ Region"] === "";
+      }
+      return company["HQ Region"] === hqRegion;
+    });
   }
 
   return filteredCompanies;

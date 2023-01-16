@@ -1,6 +1,6 @@
 import { FormikProps } from "formik";
 import { FC } from "react";
-import { useUniqueIndustries } from "src/api/filters";
+import { useUniqueHQRegions, useUniqueIndustries } from "src/api/filters";
 import { LoadingSuspense } from "src/components";
 
 import { MenuItem, TextField, Typography } from "@mui/material";
@@ -14,6 +14,8 @@ interface Props {
 
 export const RankingFilters: FC<Props> = ({ formik }) => {
   const industries = useUniqueIndustries();
+  const hqRegions = useUniqueHQRegions();
+
   return (
     <div>
       <Typography variant="body1" fontWeight={800} gutterBottom>
@@ -109,6 +111,36 @@ export const RankingFilters: FC<Props> = ({ formik }) => {
           />
         </Grid>
       </Grid>
+
+      <Typography variant="body1" fontWeight={800} paddingY={2}>
+        HQ regions
+      </Typography>
+      <LoadingSuspense isLoading={hqRegions.isLoading}>
+        <Grid container>
+          <Grid xs={12}>
+            <TextField
+              id="hqRegion"
+              name="hqRegion"
+              select
+              variant="outlined"
+              defaultValue={DEFAULT_FILTERS.hqRegion}
+              fullWidth={true}
+              value={formik.values.hqRegion}
+              onChange={formik.handleChange}
+              error={formik.touched.hqRegion && Boolean(formik.errors.hqRegion)}
+              helperText={formik.touched.hqRegion && formik.errors.hqRegion}
+            >
+              <MenuItem value={DEFAULT_FILTERS.hqRegion}>All regions</MenuItem>
+              {hqRegions.data &&
+                hqRegions.data.map((hqRegion) => (
+                  <MenuItem key={hqRegion} value={hqRegion}>
+                    {hqRegion}
+                  </MenuItem>
+                ))}
+            </TextField>
+          </Grid>
+        </Grid>
+      </LoadingSuspense>
     </div>
   );
 };
