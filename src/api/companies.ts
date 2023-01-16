@@ -1,12 +1,12 @@
-import { Filters } from "src/modules/RankingModule/types/Filters";
+import { useInfiniteQuery } from "@tanstack/react-query";
+
+import { DEFAULT_FILTERS } from "src/modules/RankingModule/constants/Filters";
 import { Company } from "src/types";
 import { CompanyResponse } from "src/types/CompanyResponse";
 
-import { useInfiniteQuery } from "@tanstack/react-query";
-
 import data from "../api/companies.json";
 
-function getFilteredCompanies(companies: Company[], filters: Filters): Company[] {
+function getFilteredCompanies(companies: Company[], filters: typeof DEFAULT_FILTERS): Company[] {
   let filteredCompanies = companies;
   const { maxRank, minRank } = filters;
   if (maxRank && minRank) {
@@ -20,7 +20,7 @@ function getFilteredCompanies(companies: Company[], filters: Filters): Company[]
 
 async function getCompanies(
   pageSize: number,
-  filters: Filters,
+  filters: typeof DEFAULT_FILTERS,
   { pageParam = 0 }
 ): Promise<CompanyResponse> {
   const pagedCompanies = await new Promise<CompanyResponse>((resolve) => {
@@ -40,7 +40,7 @@ async function getCompanies(
   return pagedCompanies;
 }
 
-export function useCompanies(pageSize: number, filters: Filters) {
+export function useCompanies(pageSize: number, filters: typeof DEFAULT_FILTERS) {
   return useInfiniteQuery(["companyData"], (params) => getCompanies(pageSize, filters, params), {
     getNextPageParam: (lastPage) => lastPage.nextPageIndex,
     keepPreviousData: true,

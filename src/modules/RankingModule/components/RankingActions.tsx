@@ -6,13 +6,12 @@ import { Button } from "@mui/material";
 
 import { DEFAULT_FILTERS, VALIDATION_SCHEMA } from "../constants/Filters";
 import { FiltersContext } from "../context/FiltersContext";
-import { Filters } from "../types/Filters";
 import { RankingFilters } from "./RankingFilters";
 
 export const RankingActions: FC = () => {
   const [isFiltersDialogOpen, setIsFiltersDialogOpen] = useState(false);
   const setFilters = useContext(FiltersContext);
-  const formik = useFormik<Filters>({
+  const formik = useFormik<typeof DEFAULT_FILTERS>({
     initialValues: DEFAULT_FILTERS,
     validationSchema: VALIDATION_SCHEMA,
     onSubmit: (values) => {

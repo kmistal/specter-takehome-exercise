@@ -1,16 +1,19 @@
 import { FormikProps } from "formik";
 import { FC } from "react";
+import { useUniqueIndustries } from "src/api/filters";
+import { LoadingSuspense } from "src/components";
 
-import { TextField, Typography } from "@mui/material";
+import { MenuItem, TextField, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 
-import { Filters } from "../types/Filters";
+import { DEFAULT_FILTERS } from "../constants/Filters";
 
 interface Props {
-  formik: FormikProps<Filters>;
+  formik: FormikProps<typeof DEFAULT_FILTERS>;
 }
 
 export const RankingFilters: FC<Props> = ({ formik }) => {
+  const industries = useUniqueIndustries();
   return (
     <div>
       <Typography variant="body1" fontWeight={800} gutterBottom>
@@ -44,6 +47,36 @@ export const RankingFilters: FC<Props> = ({ formik }) => {
           />
         </Grid>
       </Grid>
+
+      <Typography variant="body1" fontWeight={800} paddingY={2}>
+        Industry
+      </Typography>
+      <LoadingSuspense isLoading={industries.isLoading}>
+        <Grid container>
+          <Grid xs={12}>
+            <TextField
+              id="industry"
+              name="industry"
+              select
+              variant="outlined"
+              defaultValue={DEFAULT_FILTERS.industry}
+              fullWidth={true}
+              value={formik.values.industry}
+              onChange={formik.handleChange}
+              error={formik.touched.industry && Boolean(formik.errors.industry)}
+              helperText={formik.touched.industry && formik.errors.industry}
+            >
+              <MenuItem value={DEFAULT_FILTERS.industry}>All industries</MenuItem>
+              {industries.data &&
+                industries.data.map((industry) => (
+                  <MenuItem key={industry} value={industry}>
+                    {industry}
+                  </MenuItem>
+                ))}
+            </TextField>
+          </Grid>
+        </Grid>
+      </LoadingSuspense>
     </div>
   );
 };

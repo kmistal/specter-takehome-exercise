@@ -1,9 +1,9 @@
-import { FC, Fragment } from "react";
-import { HeadlessTable } from "src/components";
-import { CompanyResponse } from "src/types/CompanyResponse";
-
 import { TableCell, TableRow } from "@mui/material";
 import { InfiniteData } from "@tanstack/react-query";
+import { FC, Fragment } from "react";
+
+import { HeadlessTable } from "src/components";
+import { CompanyResponse } from "src/types/CompanyResponse";
 
 import { RankingEntry } from "./RankingEntry";
 
