@@ -10,7 +10,7 @@ import { Button } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { InfiniteData } from "@tanstack/react-query";
 
-import { RankingActions, RankingList } from "../components";
+import { NoResults, RankingActions, RankingList } from "../components";
 import { DEFAULT_FILTERS } from "../constants/Filters";
 import { RANKING_PAGE_SIZE } from "../constants/Ranking";
 import { FiltersContext } from "../context/FiltersContext";
@@ -34,6 +34,7 @@ export const RankingView: FC = () => {
           <Grid container spacing={3}>
             <Grid xs>
               <RankingList companyInfiniteResponse={data as InfiniteData<CompanyResponse>} />
+              {Boolean(data?.pages[0].data.length) || <NoResults />}
               {hasNextPage && (
                 <LoadingSuspense isLoading={isFetchingNextPage}>
                   <Grid container display="flex" justifyContent="center" alignItems="center">
