@@ -4,6 +4,8 @@ export const DEFAULT_FILTERS = {
   minRank: "",
   maxRank: "",
   industry: "all",
+  minEmployee: "",
+  maxEmployee: "",
 };
 
 export const VALIDATION_SCHEMA = yup.object({
@@ -12,7 +14,15 @@ export const VALIDATION_SCHEMA = yup.object({
     .number()
     .positive("Minimal ranking must by greater than 0")
     .when(["minRank"], (minRank, schema) => {
-      return schema.min(minRank);
+      return schema.min(minRank || 0);
+    })
+    .notRequired(),
+    minEmployee: yup.number().min(0).notRequired(),
+    maxEmployee: yup
+    .number()
+    .positive("Maximal number of employees must by greater than 0")
+    .when(["minEmployee"], (minEmployee, schema) => {
+      return schema.min(minEmployee || 0);
     })
     .notRequired(),
 });

@@ -7,12 +7,26 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import data from "../api/companies.json";
 import { NO_INDUSTRY_KEY } from "./constants";
 
+function getCompaniesFilteredByMinMax(
+  companies: Company[],
+  min: number,
+  max: number,
+  param: keyof Company
+) {
+  return companies.filter(
+    (company) => company[param] >= min && company[param] <= max
+  );
+}
+
 function getFilteredCompanies(companies: Company[], filters: typeof DEFAULT_FILTERS): Company[] {
   let filteredCompanies = companies;
-  const { maxRank, minRank, industry } = filters;
-  if (maxRank && minRank) {
-    filteredCompanies = companies.filter(
-      (company) => company.Rank >= Number(minRank) && company.Rank <= Number(maxRank)
+  const { maxRank, minRank, industry, maxEmployee, minEmployee } = filters;
+  if (maxRank || minRank) {
+    filteredCompanies = getCompaniesFilteredByMinMax(
+      filteredCompanies,
+      Number(minRank || 0),
+      Number(maxRank || Number.POSITIVE_INFINITY),
+      "Rank"
     );
   }
 
@@ -23,6 +37,15 @@ function getFilteredCompanies(companies: Company[], filters: typeof DEFAULT_FILT
       }
       return Industry === industry;
     });
+  }
+
+  if (maxEmployee || minEmployee) {
+    filteredCompanies = getCompaniesFilteredByMinMax(
+      filteredCompanies,
+      Number(minEmployee || 0),
+      Number(maxEmployee || Number.POSITIVE_INFINITY),
+      "Employee Count"
+    );
   }
 
   return filteredCompanies;

@@ -77,6 +77,38 @@ export const RankingFilters: FC<Props> = ({ formik }) => {
           </Grid>
         </Grid>
       </LoadingSuspense>
+
+      <Typography variant="body1" fontWeight={800} paddingY={2}>
+        Employee count
+      </Typography>
+      <Grid container spacing={2}>
+        <Grid xs={6}>
+          <TextField
+            id="minEmployee"
+            name="minEmployee"
+            label="Minimal"
+            type="number"
+            variant="outlined"
+            value={formik.values.minEmployee}
+            onChange={formik.handleChange}
+            error={formik.touched.minEmployee && Boolean(formik.errors.minEmployee)}
+            helperText={formik.touched.minEmployee && formik.errors.minEmployee}
+          />
+        </Grid>
+        <Grid xs={6}>
+          <TextField
+            id="maxEmployee"
+            name="maxEmployee"
+            label="Maximal"
+            type="number"
+            variant="outlined"
+            value={formik.values.maxEmployee}
+            onChange={formik.handleChange}
+            error={formik.touched.maxEmployee && Boolean(formik.errors.maxEmployee)}
+            helperText={formik.touched.maxEmployee && formik.errors.maxEmployee}
+          />
+        </Grid>
+      </Grid>
     </div>
   );
 };
