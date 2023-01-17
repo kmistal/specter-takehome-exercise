@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import { FC, Fragment, lazy, useState } from "react";
+import { FC, Fragment, lazy, useRef, useState } from "react";
 import { InfiniteData } from "react-query";
 import { useParams } from "react-router";
 
@@ -25,6 +25,7 @@ const RankingView: FC = () => {
     filters
   );
   const { domain } = useParams();
+  const CompanyDetailsContainerRef = useRef(null);
 
   return (
     <FiltersContext.Provider value={setFilters}>
@@ -47,11 +48,9 @@ const RankingView: FC = () => {
               </Fragment>
             </Grid>
             <Fragment>
-              {!domain || (
-                <Grid xs={7}>
-                  <CompanyDetailsView companyDomain={domain} />
-                </Grid>
-              )}
+              <Grid xs={domain ? 7 : 0} ref={CompanyDetailsContainerRef}>
+                <CompanyDetailsView companyDomain={domain} container={CompanyDetailsContainerRef} />
+              </Grid>
             </Fragment>
           </Grid>
         </LoadingSuspense>

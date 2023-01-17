@@ -1,4 +1,4 @@
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { Container } from "@mui/system";
 import { FC } from "react";
 
 import { Card } from "src/components";
@@ -10,58 +10,53 @@ interface Props {
 
 export const CompanyQuickStats: FC<Props> = ({ company }) => {
   return (
-    <Grid
-      container
-      display="flex"
-      justifyContent="space-between"
-      alignItems="center"
-      paddingY={2}
-      paddingX={0}
-      spacing={2}
-    >
-      <Grid width={200}>
-        <Card title="Rank">{company["Rank"]}</Card>
-      </Grid>
-      {company["Employee Count"] && (
-        <Grid width={200}>
-          <Card title="Employee Count">{company["Employee Count"]}</Card>
-        </Grid>
-      )}
-      {company["Web Visits"] && (
-        <Grid width={200}>
-          <Card title="Web Visits">{company["Web Visits"]}</Card>
-        </Grid>
-      )}
-      {company["Alexa Rank"] && (
-        <Grid width={200}>
-          <Card title="Alexa Rank">{company["Alexa Rank"]}</Card>
-        </Grid>
-      )}
-      {company["LinkedIn - Followers"] && (
-        <Grid width={200}>
-          <Card title="LinkedIn - Followers">{company["LinkedIn - Followers"]}</Card>
-        </Grid>
-      )}
-      {company["Twitter - Followers"] && (
-        <Grid width={200}>
-          <Card title="Twitter - Followers">{company["Twitter - Followers"]}</Card>
-        </Grid>
-      )}
-      {company["Instagram - Followers"] && (
-        <Grid width={200}>
-          <Card title="Instagram - Followers">{company["Instagram - Followers"]}</Card>
-        </Grid>
-      )}
-      {company["iTunes - Rating"] && (
-        <Grid width={200}>
-          <Card title="iTunes - Rating">{company["iTunes - Rating"]}</Card>
-        </Grid>
-      )}
-      {company["Google Play - Rating"] && (
-        <Grid width={200}>
-          <Card title="Google Play - Rating">{company["Google Play - Rating"]}</Card>
-        </Grid>
-      )}
-    </Grid>
+    <div style={{ overflowX: "auto" }}>
+      <Container sx={{ display: "flex", paddingY: 2, gap: 2, paddingX: "0 !important" }}>
+        <Card sx={{ minWidth: 200 }} title="Rank">
+          {company["Rank"]}
+        </Card>
+
+        {company["Employee Count"] && (
+          <Card sx={{ minWidth: 200 }} title="Employee Count">
+            {company["Employee Count"]}
+          </Card>
+        )}
+        {company["Web Visits"] && (
+          <Card sx={{ minWidth: 200 }} title="Web Visits">
+            {company["Web Visits"]}
+          </Card>
+        )}
+        {company["Alexa Rank"] && (
+          <Card sx={{ minWidth: 200 }} title="Alexa Rank">
+            {company["Alexa Rank"]}
+          </Card>
+        )}
+        {company["LinkedIn - Followers"] && (
+          <Card sx={{ minWidth: 200 }} title="LinkedIn - Followers">
+            {company["LinkedIn - Followers"]}
+          </Card>
+        )}
+        {company["Twitter - Followers"] && (
+          <Card sx={{ minWidth: 200 }} title="Twitter - Followers">
+            {company["Twitter - Followers"]}
+          </Card>
+        )}
+        {company["Instagram - Followers"] && (
+          <Card sx={{ minWidth: 200 }} title="Instagram - Followers">
+            {company["Instagram - Followers"]}
+          </Card>
+        )}
+        {company["iTunes - Rating"] && (
+          <Card sx={{ minWidth: 200 }} title="iTunes - Rating">
+            {company["iTunes - Rating"]}
+          </Card>
+        )}
+        {company["Google Play - Rating"] && (
+          <Card sx={{ minWidth: 200 }} title="Google Play - Rating">
+            {company["Google Play - Rating"]}
+          </Card>
+        )}
+      </Container>
+    </div>
   );
 };
