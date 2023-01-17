@@ -1,11 +1,10 @@
-import { FC, ReactNode } from "react";
-
 import { Paper } from "@mui/material";
+import { FC, ReactNode } from "react";
 
 import { Header } from "./Header";
 
 interface Props {
-  title: string;
+  title: ReactNode;
   actions?: ReactNode;
   children?: ReactNode;
 }
@@ -15,7 +14,7 @@ export const View: FC<Props> = ({ title, actions, children }) => {
     <div>
       <Header title={title} />
       {actions}
-      <Paper elevation={0} sx={{ paddingY: 1, background: 'transparent'}}>
+      <Paper elevation={0} sx={{ paddingY: 1, background: "transparent" }}>
         {children}
       </Paper>
     </div>

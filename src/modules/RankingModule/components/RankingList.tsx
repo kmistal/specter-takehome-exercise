@@ -1,14 +1,14 @@
-import { TableCell, TableRow } from "@mui/material";
-import { InfiniteData } from "@tanstack/react-query";
 import { FC, Fragment } from "react";
-
+import { InfiniteData } from "react-query";
 import { HeadlessTable } from "src/components";
-import { CompanyResponse } from "src/types/CompanyResponse";
+import { CompaniesResponse } from "src/types/CompanyResponse";
+
+import { TableCell, TableRow } from "@mui/material";
 
 import { RankingEntry } from "./RankingEntry";
 
 interface Props {
-  companyInfiniteResponse: InfiniteData<CompanyResponse>;
+  companyInfiniteResponse: InfiniteData<CompaniesResponse>;
 }
 
 export const RankingList: FC<Props> = ({ companyInfiniteResponse }) => {

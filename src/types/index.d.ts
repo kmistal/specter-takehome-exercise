@@ -109,4 +109,5 @@ export interface Company {
   "Google Play - Installs": string;
   "Contact Email": string;
   "Phone Number": string;
+  "Is Favourite"?: boolean;
 }
