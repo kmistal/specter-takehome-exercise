@@ -20,7 +20,7 @@ export function useChartOptions(theme: Theme, categories: string[]): ApexCharts.
       },
     },
     dataLabels: {
-      enabled: true,
+      enabled: false,
     },
     stroke: {
       curve: "smooth",
