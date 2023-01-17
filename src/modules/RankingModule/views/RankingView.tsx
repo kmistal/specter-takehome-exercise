@@ -1,13 +1,13 @@
-import { Button } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { FC, Fragment, lazy, useRef, useState } from "react";
 import { InfiniteData } from "react-query";
 import { useParams } from "react-router";
-
 import { useCompanies } from "src/api/companies";
 import { LoadingSuspense, View } from "src/components";
 import { Loadable } from "src/themes/components/Loadable";
 import { CompaniesResponse } from "src/types/CompanyResponse";
+
+import { Button } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 
 import { NoResults, RankingActions, RankingList } from "../components";
 import { DEFAULT_FILTERS } from "../constants/Filters";
@@ -49,7 +49,12 @@ const RankingView: FC = () => {
             </Grid>
             <Fragment>
               <Grid xs={domain ? 7 : 0} ref={CompanyDetailsContainerRef}>
-                <CompanyDetailsView companyDomain={domain} container={CompanyDetailsContainerRef} />
+                {domain && (
+                  <CompanyDetailsView
+                    companyDomain={domain}
+                    container={CompanyDetailsContainerRef}
+                  />
+                )}
               </Grid>
             </Fragment>
           </Grid>
