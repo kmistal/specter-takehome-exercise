@@ -1,12 +1,12 @@
 import { Button } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
-import { FC, Fragment, useState } from "react";
+import { FC, Fragment, lazy, useState } from "react";
 import { InfiniteData } from "react-query";
 import { useParams } from "react-router";
 
 import { useCompanies } from "src/api/companies";
 import { LoadingSuspense, View } from "src/components";
-import { CompanyDetailsView } from "src/modules/CompanyModule/views/CompanyDetailsView";
+import { Loadable } from "src/themes/components/Loadable";
 import { CompaniesResponse } from "src/types/CompanyResponse";
 
 import { NoResults, RankingActions, RankingList } from "../components";
@@ -14,7 +14,11 @@ import { DEFAULT_FILTERS } from "../constants/Filters";
 import { RANKING_PAGE_SIZE } from "../constants/Ranking";
 import { FiltersContext } from "../context/FiltersContext";
 
-export const RankingView: FC = () => {
+const CompanyDetailsView = Loadable(
+  lazy(() => import("src/modules/CompanyModule/views/CompanyDetailsView"))
+);
+
+const RankingView: FC = () => {
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const { isLoading, isFetchingNextPage, hasNextPage, fetchNextPage, data } = useCompanies(
     RANKING_PAGE_SIZE,
@@ -55,3 +59,5 @@ export const RankingView: FC = () => {
     </FiltersContext.Provider>
   );
 };
+
+export default RankingView;

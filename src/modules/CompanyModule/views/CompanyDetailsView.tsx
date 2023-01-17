@@ -35,7 +35,7 @@ const CompanyHeader: FC<{ company: Company }> = ({ company }) => {
   );
 };
 
-export const CompanyDetailsView: FC<Props> = ({ companyDomain }) => {
+const CompanyDetailsView: FC<Props> = ({ companyDomain }) => {
   const { isLoading, data } = useCompany(companyDomain);
   const [isMetaDataVisible, setIsMetaDataVisible] = useState(false);
 
@@ -59,3 +59,5 @@ export const CompanyDetailsView: FC<Props> = ({ companyDomain }) => {
     </View>
   );
 };
+
+export default CompanyDetailsView;
