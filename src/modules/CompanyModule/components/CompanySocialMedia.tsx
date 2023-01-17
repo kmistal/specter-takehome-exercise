@@ -1,9 +1,9 @@
-import { FC } from "react";
-import { Company } from "src/types";
-
 import { Apple, Instagram, LinkedIn, Shop, Twitter } from "@mui/icons-material";
 import { Link, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { FC } from "react";
+
+import { Company } from "src/types";
 
 interface Props {
   company: Company;

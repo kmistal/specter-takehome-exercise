@@ -1,6 +1,5 @@
-import { Outlet } from "react-router-dom";
-
 import { Container, useMediaQuery, useTheme } from "@mui/material";
+import { Outlet } from "react-router-dom";
 
 import ThemeCustomization from "./themes";
 

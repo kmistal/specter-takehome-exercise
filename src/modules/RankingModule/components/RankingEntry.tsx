@@ -1,14 +1,17 @@
-import { FC } from "react";
-import { useNavigate } from "react-router-dom";
-import { TextInfoEntry } from "src/components";
-import { RoutePaths } from "src/constants/RoutePaths";
-import { Company } from "src/types";
-
 import {
-    ApartmentOutlined, HailOutlined, HandshakeOutlined, LocationOnOutlined
+  ApartmentOutlined,
+  HailOutlined,
+  HandshakeOutlined,
+  LocationOnOutlined,
 } from "@mui/icons-material";
 import { Divider, Paper, styled, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { FC } from "react";
+import { useNavigate } from "react-router-dom";
+
+import { TextInfoEntry } from "src/components";
+import { RoutePaths } from "src/constants/RoutePaths";
+import { Company } from "src/types";
 
 const PaperWithHover = styled(Paper)`
   & {

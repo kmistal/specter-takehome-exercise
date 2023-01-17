@@ -1,5 +1,3 @@
-import { FC, ReactNode } from "react";
-
 import Button from "@mui/material/Button";
 import MuiDialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -7,6 +5,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { FC, ReactNode } from "react";
 
 interface Props {
   title: string;
@@ -28,9 +27,7 @@ export const Dialog: FC<Props> = ({ title, children, isOpen, handleClose, handle
       aria-labelledby="responsive-dialog-title"
     >
       <DialogTitle id="responsive-dialog-title">{title}</DialogTitle>
-      <DialogContent>
-        {children}
-      </DialogContent>
+      <DialogContent>{children}</DialogContent>
       <DialogActions>
         <Button autoFocus onClick={handleClose}>
           Close

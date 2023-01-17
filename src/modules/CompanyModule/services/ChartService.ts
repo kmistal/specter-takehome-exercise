@@ -4,7 +4,7 @@ import { Company } from "src/types";
 import { ChartDomains } from "../constants/ChartCategories";
 
 export function getDataSeries(company: Company): ChartProps["series"] {
-  let dataSeries = [] as ChartProps["series"];
+  const dataSeries = [] as ChartProps["series"];
   if (company["Employee Count"]) {
     const series = {
       name: ChartDomains.Employees.toString(),

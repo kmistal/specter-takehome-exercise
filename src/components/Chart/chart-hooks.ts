@@ -25,13 +25,12 @@ export function useChartOptions(theme: Theme, categories: string[]): ApexCharts.
     stroke: {
       curve: "smooth",
       width: 4,
-      
     },
-    
-      fill: {
-        opacity: 1,
-        type: 'gradient',
-      },
+
+    fill: {
+      opacity: 1,
+      type: "gradient",
+    },
     grid: {
       strokeDashArray: 0,
       borderColor: line,

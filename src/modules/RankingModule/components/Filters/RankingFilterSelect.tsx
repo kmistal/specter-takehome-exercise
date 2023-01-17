@@ -1,9 +1,9 @@
-import { FormikProps } from "formik";
-import { FC } from "react";
-import { LoadingSuspense } from "src/components";
-
 import { MenuItem, TextField, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { FormikProps } from "formik";
+import { FC } from "react";
+
+import { LoadingSuspense } from "src/components";
 
 import { DEFAULT_FILTERS } from "../../constants/Filters";
 

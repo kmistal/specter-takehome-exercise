@@ -1,9 +1,11 @@
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "react-query";
+
 import { DEFAULT_FILTERS } from "src/modules/RankingModule/constants/Filters";
 import { Company } from "src/types";
 import { CompaniesResponse, CompanyResponse } from "src/types/CompanyResponse";
 
 import data from "../api/companies.json";
+
 import { NO_HQ_REGION_KEY, NO_INDUSTRY_KEY, QUERY_KEYS } from "./constants";
 
 function getCompaniesFilteredByMinMax(

@@ -1,8 +1,8 @@
-import { FC } from "react";
-import { useMarkCompanyFavourite, useMarkCompanyNotFavourite } from "src/api/companies";
-
 import StarBorderOutlined from "@mui/icons-material/StarBorderOutlined";
 import StarOutlined from "@mui/icons-material/StarOutlined";
+import { FC } from "react";
+
+import { useMarkCompanyFavourite, useMarkCompanyNotFavourite } from "src/api/companies";
 
 interface Props {
   isFavourite: boolean;

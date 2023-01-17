@@ -1,11 +1,12 @@
+import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import { FC, Fragment, useContext, useState } from "react";
-import { Dialog } from "src/components";
 
-import { Button } from "@mui/material";
+import { Dialog } from "src/components";
 
 import { DEFAULT_FILTERS, VALIDATION_SCHEMA } from "../constants/Filters";
 import { FiltersContext } from "../context/FiltersContext";
+
 import { RankingFilters } from "./RankingFilters";
 
 export const RankingActions: FC = () => {

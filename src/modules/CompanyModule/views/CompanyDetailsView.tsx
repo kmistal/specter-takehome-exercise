@@ -1,11 +1,11 @@
+import { Button, Typography } from "@mui/material";
 import { FC, useState } from "react";
 import { useNavigate } from "react-router";
+
 import { useCompany } from "src/api/companies";
 import { View } from "src/components";
 import { FavouriteMark } from "src/modules/RankingModule/components/FavouriteMark";
 import { Company } from "src/types";
-
-import { Button, Typography } from "@mui/material";
 
 import { CompanyDescription } from "../components/CompanyDescription";
 import { CompanyMetaData } from "../components/CompanyMetaData";

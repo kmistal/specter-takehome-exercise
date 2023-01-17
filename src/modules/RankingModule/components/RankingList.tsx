@@ -1,9 +1,9 @@
+import { TableCell, TableRow } from "@mui/material";
 import { FC, Fragment } from "react";
 import { InfiniteData } from "react-query";
+
 import { HeadlessTable } from "src/components";
 import { CompaniesResponse } from "src/types/CompanyResponse";
-
-import { TableCell, TableRow } from "@mui/material";
 
 import { RankingEntry } from "./RankingEntry";
 

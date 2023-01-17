@@ -1,6 +1,5 @@
-import { FC } from "react";
-
 import { Typography } from "@mui/material";
+import { FC } from "react";
 
 export const NoResults: FC = () => {
   return (

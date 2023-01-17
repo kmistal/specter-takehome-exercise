@@ -1,7 +1,6 @@
+import { useTheme } from "@mui/material/styles";
 import { FC } from "react";
 import ReactApexChart from "react-apexcharts";
-
-import { useTheme } from "@mui/material/styles";
 
 import { useChartOptions } from "./chart-hooks";
 
@@ -14,5 +13,5 @@ export const Chart: FC<ChartProps> = ({ series, categories }) => {
   const theme = useTheme();
   const areaChartOptions = useChartOptions(theme, categories);
 
-  return <ReactApexChart options={areaChartOptions} series={series} type="area"/>;
+  return <ReactApexChart options={areaChartOptions} series={series} type="area" />;
 };

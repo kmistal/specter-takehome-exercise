@@ -1,8 +1,8 @@
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { FC } from "react";
+
 import { Card } from "src/components";
 import { Company } from "src/types";
-
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
 
 interface Props {
   company: Company;
@@ -18,7 +18,6 @@ export const CompanyQuickStats: FC<Props> = ({ company }) => {
       paddingY={2}
       paddingX={0}
       spacing={2}
-
     >
       <Grid width={200}>
         <Card title="Rank">{company["Rank"]}</Card>

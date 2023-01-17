@@ -1,18 +1,17 @@
-import { FormikProps } from "formik";
-import { FC } from "react";
-
 import { TextField, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { FormikProps } from "formik";
+import { FC } from "react";
 
 import { DEFAULT_FILTERS } from "../../constants/Filters";
 
 interface Props {
   label: string;
-  values:  FormikProps<typeof DEFAULT_FILTERS>['values'];
+  values: FormikProps<typeof DEFAULT_FILTERS>["values"];
   formikKeys: {
     min: keyof typeof DEFAULT_FILTERS;
     max: keyof typeof DEFAULT_FILTERS;
-  }
+  };
   formik: FormikProps<typeof DEFAULT_FILTERS>;
 }
 
@@ -37,7 +36,7 @@ export const RankingFilterMinMax: FC<Props> = ({ label, values, formikKeys, form
           />
         </Grid>
         <Grid xs={6}>
-        <TextField
+          <TextField
             id={formikKeys.max}
             name={formikKeys.max}
             label="Maximal"

@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { Card } from "src/components";
-
 import { Button, Typography } from "@mui/material";
+import { FC } from "react";
+
+import { Card } from "src/components";
 
 interface Props {
   companyName: string;

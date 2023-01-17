@@ -1,6 +1,5 @@
-import { FC, Fragment } from "react";
-
 import Grid from "@mui/material/Unstable_Grid2/Grid2";
+import { FC, Fragment } from "react";
 
 interface Props {
   isLoading: boolean;

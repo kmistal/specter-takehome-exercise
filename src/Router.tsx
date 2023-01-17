@@ -1,6 +1,5 @@
-import { Route, Routes } from "react-router-dom";
-
 import { Typography } from "@mui/material";
+import { Route, Routes } from "react-router-dom";
 
 import App from "./App";
 import { RoutePaths } from "./constants/RoutePaths";
@@ -12,7 +11,14 @@ export default function Router() {
       <Route path={RoutePaths.ROOT} element={<App />}>
         <Route index element={<RankingView />} />
         <Route path={`${RoutePaths.COMPANY_DETAILS}/:domain`} element={<RankingView />} />
-        <Route path="*" element={<Typography variant="h1" textAlign="center">404</Typography>} />
+        <Route
+          path="*"
+          element={
+            <Typography variant="h1" textAlign="center">
+              404
+            </Typography>
+          }
+        />
       </Route>
     </Routes>
   );

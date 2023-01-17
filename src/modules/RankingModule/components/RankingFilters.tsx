@@ -1,8 +1,10 @@
 import { FormikProps } from "formik";
 import { FC, Fragment } from "react";
+
 import { useUniqueHQRegions, useUniqueIndustries } from "src/api/filters";
 
 import { DEFAULT_FILTERS } from "../constants/Filters";
+
 import { RankingFilterMinMax, RankingFilterSelect } from "./Filters";
 
 interface Props {

@@ -1,8 +1,8 @@
+import { Link, Typography } from "@mui/material";
 import { FC } from "react";
+
 import { Card } from "src/components";
 import { Company } from "src/types";
-
-import { Link, Typography } from "@mui/material";
 
 import { CompanySocialMedia } from "./CompanySocialMedia";
 
@@ -12,7 +12,7 @@ interface Props {
 
 export const CompanyMetaData: FC<Props> = ({ company }) => {
   return (
-    <Card sx={{ marginTop: 2}} textCentered={false}>
+    <Card sx={{ marginTop: 2 }} textCentered={false}>
       {company["HQ Region"] && (
         <Typography variant="body2">
           <span style={{ fontWeight: 800 }}>HQ Region: </span>

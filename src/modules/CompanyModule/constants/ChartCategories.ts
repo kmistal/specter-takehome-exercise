@@ -7,4 +7,11 @@ export enum ChartDomains {
   "Google Play" = "Google Play",
 }
 
-export const CHART_CATEGORIES = ["1st month", "2nd month", "3rd month", "4th month", "5th month", "6th month"];
+export const CHART_CATEGORIES = [
+  "1st month",
+  "2nd month",
+  "3rd month",
+  "4th month",
+  "5th month",
+  "6th month",
+];

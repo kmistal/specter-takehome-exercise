@@ -1,7 +1,9 @@
 import { useQuery } from "react-query";
+
 import { Company } from "src/types";
 
 import data from "../api/companies.json";
+
 import { NO_HQ_REGION_KEY, NO_INDUSTRY_KEY } from "./constants";
 
 async function getUniqueEntriesByParam(

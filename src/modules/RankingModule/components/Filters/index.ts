@@ -1,2 +1,2 @@
-export {RankingFilterMinMax} from './RankingFilterMinMax';
-export {RankingFilterSelect} from './RankingFilterSelect';
+export { RankingFilterMinMax } from "./RankingFilterMinMax";
+export { RankingFilterSelect } from "./RankingFilterSelect";

@@ -1,13 +1,13 @@
+import { Button } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2/Grid2";
 import { FC, Fragment, useState } from "react";
 import { InfiniteData } from "react-query";
 import { useParams } from "react-router";
+
 import { useCompanies } from "src/api/companies";
 import { LoadingSuspense, View } from "src/components";
 import { CompanyDetailsView } from "src/modules/CompanyModule/views/CompanyDetailsView";
 import { CompaniesResponse } from "src/types/CompanyResponse";
-
-import { Button } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2/Grid2";
 
 import { NoResults, RankingActions, RankingList } from "../components";
 import { DEFAULT_FILTERS } from "../constants/Filters";
