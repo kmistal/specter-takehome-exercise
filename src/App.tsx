@@ -1,6 +1,7 @@
 import { Container, useMediaQuery, useTheme } from "@mui/material";
 import { Outlet } from "react-router-dom";
 
+import { ScrollToTop } from "./components";
 import ThemeCustomization from "./themes";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Container maxWidth={isXlScreen ? "xl" : "lg"} sx={{ paddingY: 2 }}>
         <Outlet />
       </Container>
+      <ScrollToTop />
     </ThemeCustomization>
   );
 }

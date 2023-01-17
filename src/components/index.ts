@@ -5,3 +5,4 @@ export { TextInfoEntry } from "./TextInfoEntry";
 export { Card } from "./Card";
 export { Chart } from "./Chart";
 export { Dialog } from "./Dialog";
+export { ScrollToTop } from "./ScrollToTop";
