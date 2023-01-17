@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import { useFormik } from "formik";
 import { FC, Fragment, useContext, useState } from "react";
+import { useNavigate } from "react-router";
 
 import { Dialog } from "src/components";
 
@@ -12,11 +13,13 @@ import { RankingFilters } from "./RankingFilters";
 export const RankingActions: FC = () => {
   const [isFiltersDialogOpen, setIsFiltersDialogOpen] = useState(false);
   const setFilters = useContext(FiltersContext);
+  const navigate = useNavigate();
   const formik = useFormik<typeof DEFAULT_FILTERS>({
     initialValues: DEFAULT_FILTERS,
     validationSchema: VALIDATION_SCHEMA,
     onSubmit: (values) => {
       setFilters(values);
+      navigate("/");
       handleClose();
     },
   });

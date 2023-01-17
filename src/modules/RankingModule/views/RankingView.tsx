@@ -42,11 +42,13 @@ export const RankingView: FC = () => {
                 )}
               </Fragment>
             </Grid>
-            {!domain || (
-              <Grid xs={7}>
-                <CompanyDetailsView companyDomain={domain} />
-              </Grid>
-            )}
+            <Fragment>
+              {!domain || (
+                <Grid xs={7}>
+                  <CompanyDetailsView companyDomain={domain} />
+                </Grid>
+              )}
+            </Fragment>
           </Grid>
         </LoadingSuspense>
       </View>
